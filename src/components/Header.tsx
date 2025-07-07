@@ -81,8 +81,8 @@ export default function Header() {
               <div className="flex items-center space-x-3">
                 <div
                   className={`p-2 rounded-xl transition-all duration-300 ${isScrolled
-                      ? 'bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/25'
-                      : 'bg-gradient-to-br from-indigo-400 to-purple-500 shadow-md shadow-indigo-400/20'
+                      ? 'bg-gradient-to-br from-green-500 to-green-800 shadow-lg shadow-indigo-500/25'
+                      : 'bg-gradient-to-br from-green-400 to-green-700 shadow-md shadow-indigo-400/20'
                     }`}
                 >
                   <Leaf className="w-6 h-6 text-white" />
@@ -104,8 +104,8 @@ export default function Header() {
                     href={link.href}
                     onClick={handleNavClick}
                     className={`group  relative flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-all duration-300 ease-out ${isActive
-                        ? 'bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-600 shadow-sm'
-                        : 'text-slate-600 hover:text-indigo-600 hover:bg-white/50'
+                        ? 'bg-gradient-to-r from-green-500/10 to-green-500/10 text-green-600 shadow-sm'
+                        : 'text-slate-600 hover:text-green-600 hover:bg-white/50'
                       }`}
                   >
                     <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'
@@ -124,7 +124,7 @@ export default function Header() {
               {authChecked && (
                 isLoggedIn ? (
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-green-800 flex items-center justify-center">
                       {user && <span className="text-white text-sm font-semibold">{user?.name.charAt(0).toUpperCase()+user?.name.split(' ').slice(1).join(' ').charAt(0).toUpperCase()}</span>}
                     </div>
                     <span className="text-slate-600 font-medium text-sm">Logged In</span>

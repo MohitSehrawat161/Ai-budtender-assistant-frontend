@@ -92,7 +92,7 @@ export default function StrainExplorer() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-moss-50">
+    <div className="min-h-screen  bg-[#f4fbf0]">
       {/* Sticky Filter Bar */}
       <div className={`sticky top-18 z-10 transition-all duration-300 ${isScrolled
           ? 'bg-white/90 backdrop-blur-xl shadow-lg shadow-sage-200/50 border-b border-white/20'

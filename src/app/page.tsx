@@ -127,48 +127,47 @@ console.log(recommendations);
 
   if (showRecommendations) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-teal-50 relative">
+      <div className="min-h-screen" style={{ backgroundColor: '#f4fbf0' }}>
         {showConfetti && <Confetti />}
-        <main className="container mx-auto px-4 py-12 text-gray-800 relative z-10">
+        <main className="container mx-auto px-4 py-12" style={{ color: '#232728' }}>
           <div className="text-center mb-12 animate-fade-in">
             <div className="inline-flex items-center gap-2 mb-4">
-              <Sparkles className="text-purple-500 animate-pulse" size={32} />
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-teal-600 bg-clip-text text-transparent">
+              <Sparkles style={{ color: '#82c341' }} className="animate-pulse" size={32} />
+              <h1 className="text-5xl font-bold" style={{ background: 'linear-gradient(to right, #38861a, #82c341)', WebkitBackgroundClip: 'text', color: 'transparent' }}>
                 Your Perfect Match
               </h1>
-              <Sparkles className="text-teal-500 animate-pulse" size={32} />
+              <Sparkles style={{ color: '#3F4540' }} className="animate-pulse" size={32} />
             </div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl" style={{ color: '#3F4540' }}>
               Based on your preferences, we've curated these personalized recommendations just for you.
             </p>
           </div>
 
           {isLoading && (
-            <div className="text-center text-lg text-indigo-600 font-semibold py-8">Loading recommendations...</div>
+            <div className="text-center text-lg font-semibold py-8" style={{ color: '#38861a' }}>Loading recommendations...</div>
           )}
           {Boolean(error) && (
-            <div className="text-center text-lg text-red-500 font-semibold py-8">Failed to load recommendations.</div>
+            <div className="text-center text-lg font-semibold py-8" style={{ color: '#c0392b' }}>Failed to load recommendations.</div>
           )}
 
           {recommendations && (
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#232728' }}>
                   Recommended Products
                 </h2>
                 {recommendations.products.length > 0 ? recommendations.products.map((product, index) => (
                 <ProductCard key={product._id || index} product={product} />
-                )) : <div className="text-center text-gray-500">No products found.</div>}
+                )) : <div className="text-center" style={{ color: '#7a7d7e' }}>No products found.</div>}
               </div>
 
-
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#232728' }}>
                   Recommended Strains
                 </h2>
                 {recommendations.strains.length > 0 ? recommendations.strains.map((strain, index) => (
                   <StrainCard key={strain.name || index} strain={strain} isFavorite={false} onFavorite={() => {}} />
-                )) : <div className="text-center text-gray-500">No strains found.</div>}
+                )) : <div className="text-center" style={{ color: '#7a7d7e' }}>No strains found.</div>}
               </div>
             </div>
           )}
@@ -176,7 +175,10 @@ console.log(recommendations);
           <div className="text-center mt-16">
             <button
               onClick={handleStartOver}
-              className="group px-10 py-4 border-2 border-purple-500 text-purple-600 font-bold rounded-2xl hover:bg-purple-500 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="group px-10 py-4 border-2 font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              style={{ borderColor: '#82c341', color: '#82c341' }}
+              onMouseOver={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#82c341'; (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }}
+              onMouseOut={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLButtonElement).style.color = '#82c341'; }}
             >
               <span className="flex items-center gap-2">
                 Start Over
@@ -190,37 +192,37 @@ console.log(recommendations);
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-teal-50">
-      <main className="container mx-auto px-4 py-12 text-gray-800">
+    <div className="min-h-screen" style={{ backgroundColor: '#f4fbf0' }}>
+      <main className="container mx-auto px-4 py-12" style={{ color: '#232728' }}>
         {/* Hero Section */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="flex justify-center gap-6 mb-12 flex-wrap">
-            <Link href="/strains" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-purple-100">
-              <Leaf className="text-green-500 group-hover:animate-pulse" size={24} />
-              <span className="font-semibold text-gray-700 group-hover:text-green-600">Browse Strains</span>
+            <Link href="/strains" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border" style={{ borderColor: '#eaf7e0' }}>
+              <Leaf style={{ color: '#82c341' }} className="group-hover:animate-pulse" size={24} />
+              <span className="font-semibold group-hover:text-[#82c341]" style={{ color: '#3F4540' }}>Browse Strains</span>
             </Link>
-            <Link href="/products" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-purple-100">
-              <ShoppingBag className="text-purple-500 group-hover:animate-pulse" size={24} />
-              <span className="font-semibold text-gray-700 group-hover:text-purple-600">Shop Products</span>
+            <Link href="/products" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border" style={{ borderColor: '#eaf7e0' }}>
+              <ShoppingBag style={{ color: '#38861a' }} className="group-hover:animate-pulse" size={24} />
+              <span className="font-semibold group-hover:text-[#38861a]" style={{ color: '#3F4540' }}>Shop Products</span>
             </Link>
-            <Link href="/chat" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-purple-100">
-              <MessageCircle className="text-teal-500 group-hover:animate-pulse" size={24} />
-              <span className="font-semibold text-gray-700 group-hover:text-teal-600">Chat with AI</span>
+            <Link href="/chat" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border" style={{ borderColor: '#eaf7e0' }}>
+              <MessageCircle style={{ color: '#3F4540' }} className="group-hover:animate-pulse" size={24} />
+              <span className="font-semibold group-hover:text-[#3F4540]" style={{ color: '#3F4540' }}>Chat with AI</span>
             </Link>
           </div>
           
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-teal-600 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-6xl font-bold mb-6 leading-tight" style={{ background: 'linear-gradient(to right, #38861a, #82c341)', WebkitBackgroundClip: 'text', color: 'transparent' }}>
             Find Your Perfect Match
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: '#3F4540' }}>
             Answer a few simple questions to get personalized cannabis recommendations tailored just for you.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Step 1 */}
-          <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-purple-100">
-            <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
+          <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border" style={{ borderColor: '#eaf7e0' }}>
+            <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: '#232728' }}>
               Step 1: What are you looking for today?
             </h2>
             <div className="flex flex-wrap gap-4 justify-center">
@@ -231,9 +233,12 @@ console.log(recommendations);
                   onClick={() => handleEffectToggle(effect)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer ${
                     selectedEffects.includes(effect)
-                      ? 'bg-gradient-to-r from-purple-500 to-teal-500 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
+                      ? ''
+                      : ''
                   }`}
+                  style={selectedEffects.includes(effect)
+                    ? { background: 'linear-gradient(to right, #38861a, #82c341)', color: '#fff', boxShadow: '0 4px 14px 0 #eaf7e0' }
+                    : { backgroundColor: '#f4fbf0', color: '#3F4540', border: '1px solid #eaf7e0' }}
                 >
                   {effect}
                 </button>
@@ -242,15 +247,16 @@ console.log(recommendations);
           </div>
 
           {/* Step 2 */}
-          <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-indigo-100">
-            <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
+          <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border" style={{ borderColor: '#eaf7e0' }}>
+            <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: '#232728' }}>
               Step 2: What's your experience level?
             </h2>
-            <div className="space-y-4 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               {experienceLevels.map((level) => (
                 <label
                   key={level}
-                  className="group flex items-center p-6 bg-white rounded-2xl shadow-md cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-indigo-200"
+                  className="group flex items-center p-6 bg-white rounded-2xl shadow-md cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent"
+                  style={{ borderColor: experience === level ? '#82c341' : 'transparent' }}
                 >
                   <input
                     type="radio"
@@ -258,9 +264,10 @@ console.log(recommendations);
                     value={level}
                     checked={experience === level}
                     onChange={handleExperienceChange}
-                    className="w-5 h-5 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-0"
+                    className="w-5 h-5 focus:ring-0"
+                    style={{ accentColor: '#82c341' }}
                   />
-                  <span className="ml-6 text-lg font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
+                  <span className="ml-6 text-lg font-medium transition-colors" style={{ color: experience === level ? '#82c341' : '#3F4540' }}>
                     {level}
                   </span>
                 </label>
@@ -269,15 +276,16 @@ console.log(recommendations);
           </div>
 
           {/* Step 3 */}
-          <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-teal-100">
-            <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
+          <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border" style={{ borderColor: '#eaf7e0' }}>
+            <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: '#232728' }}>
               Step 3: What's your preferred product type?
             </h2>
-            <div className="space-y-4 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               {productTypes.map((type) => (
                 <label
                   key={type}
-                  className="group flex items-center p-6 bg-white rounded-2xl shadow-md cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-teal-200"
+                  className="group flex items-center p-6 bg-white rounded-2xl shadow-md cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent"
+                  style={{ borderColor: productType === type ? '#82c341' : 'transparent' }}
                 >
                   <input
                     type="radio"
@@ -285,9 +293,10 @@ console.log(recommendations);
                     value={type}
                     checked={productType === type}
                     onChange={handleProductTypeChange}
-                    className="w-5 h-5 text-teal-600 focus:ring-teal-500 focus:ring-offset-0"
+                    className="w-5 h-5 focus:ring-0"
+                    style={{ accentColor: '#82c341' }}
                   />
-                  <span className="ml-6 text-lg font-medium text-gray-700 group-hover:text-teal-600 transition-colors">
+                  <span className="ml-6 text-lg font-medium transition-colors" style={{ color: productType === type ? '#82c341' : '#3F4540' }}>
                     {type}
                   </span>
                 </label>
@@ -300,13 +309,14 @@ console.log(recommendations);
               type="button"
               onClick={handleSubmit}
               disabled={!selectedEffects.length || !experience || !productType}
-              className="group relative px-12 py-5 bg-gradient-to-r from-purple-600 to-teal-600 text-white font-bold text-xl rounded-2xl shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              className="group relative px-12 py-5 font-bold text-xl rounded-2xl shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              style={{ background: 'linear-gradient(to right, #38861a, #82c341)', color: '#fff', border: 'none' }}
             >
               <span className="relative z-10 flex items-center gap-3">
                 Get My Recommendations
-                <Sparkles className="group-hover:animate-spin" size={20} />
+                <Sparkles className="group-hover:animate-spin" size={20} style={{ color: '#fff' }} />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #82c341, #38861a)', opacity: 0 }}></div>
             </button>
           </div>
         </div>
