@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
 import { login as loginAction, logout as logoutAction, setUser } from '@/store/authSlice';
+import { api } from '@/store/api/api'; 
+
 
 const navLinks = [
   { href: '/', label: 'Home', icon: Home },
@@ -57,6 +59,8 @@ export default function Header() {
   const handleLogout = () => {
     Cookies.remove('token');
     Cookies.remove('user');
+    dispatch(api.util.resetApiState());
+
     dispatch(logoutAction());
     router.push('/login');
   };
