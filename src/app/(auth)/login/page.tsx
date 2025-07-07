@@ -47,10 +47,14 @@ export default function LoginPage() {
     if (!errors.email && !errors.password && formData.email && formData.password) {
       try {
         const result = await login(formData).unwrap();
-        Cookies.set('token', result.token);
-        Cookies.set('user', JSON.stringify(result.data));
+        Cookies.set('token', result.token, { path: '/', sameSite: 'lax' });
+        Cookies.set('user', JSON.stringify(result.data), { path: '/', sameSite: 'lax' });
         dispatch(loginAction(result.data));
-        router.push('/');
+        try {
+          router.replace('/');
+        } catch (err) {
+          window.location.href = '/';
+        }
         console.log(result);
       } catch (err: any) {
         toast.error(err?.data?.message || 'Something went wrong. Please try again.');
@@ -160,9 +164,16 @@ export default function LoginPage() {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full py-3 px-4 cursor-pointer bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              disabled={isLoading}
+              className={`w-full py-3 px-4 cursor-pointer bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
-              Log In
+              {isLoading && (
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+              )}
+              {isLoading ? 'Logging in...' : 'Log In'}
             </button>
           </form>
 
