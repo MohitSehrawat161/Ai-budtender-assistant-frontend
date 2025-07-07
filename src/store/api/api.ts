@@ -43,8 +43,14 @@ export const api = rtkApi.injectEndpoints({
         data: body,
       }),
     }),
+    deleteChatHistory: build.mutation<void, void>({
+      query: () => ({
+        url: `/chat/history`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetStrainsQuery, useGetChatHistoryQuery, useSaveChatMutation } = api;
+export const { useGetProductsQuery, useGetStrainsQuery, useGetChatHistoryQuery, useSaveChatMutation, useDeleteChatHistoryMutation } = api;
 

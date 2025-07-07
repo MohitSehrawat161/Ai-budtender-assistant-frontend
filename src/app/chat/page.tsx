@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Send, Leaf, Plus, Trash2 } from 'lucide-react';
 import { useChatWithGroqMutation } from '@/store/api/groqApi';
 import type { GroqChatHistoryItem } from '@/store/api/groqApi';
-import { useGetChatHistoryQuery, useSaveChatMutation } from '@/store/api/api';
+import { useGetChatHistoryQuery, useSaveChatMutation, useDeleteChatHistoryMutation } from '@/store/api/api';
 
 interface Message {
   id: string;
@@ -22,6 +22,8 @@ export default function ChatPage() {
   const [chatWithGroq] = useChatWithGroqMutation();
   const { data: chatHistory, isLoading: isHistoryLoading } = useGetChatHistoryQuery();
   const [saveChat] = useSaveChatMutation();
+  const [deleteChatHistory, { isLoading: isDeleting }] = useDeleteChatHistoryMutation();
+  const [showConfirm, setShowConfirm] = useState(false);
 
   // Typing effect state
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -137,36 +139,47 @@ export default function ChatPage() {
     }
   };
 
-  const clearHistory = () => setMessages([]);
+  const clearHistory = () => setShowConfirm(true);
+  const handleConfirmClear = async () => {
+    try {
+      await deleteChatHistory().unwrap();
+      setMessages([]);
+      setShowConfirm(false);
+    } catch (err) {
+      // Optionally show error toast
+      setShowConfirm(false);
+    }
+  };
   const newChat = () => setMessages([]);
 
   return (
     <div className="flex flex-col h-[calc(100vh-70px)] bg-gradient-to-br from-indigo-50 via-purple-50 to-green-50 p-4 ">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-end mb-4">
+        {/* <div></div> */}
+        {/* <div className="flex items-center space-x-2">
           <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg">
             <Leaf className="w-6 h-6 text-white" />
           </div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             AI Budtender
           </h1>
-        </div>
+        </div> */}
         
         <div className="flex space-x-2">
-          <button
+          {/* <button
             onClick={newChat}
             className="flex items-center space-x-1 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-indigo-200 text-indigo-600 hover:bg-indigo-50 transition-all shadow-sm"
           >
             <Plus className="w-4 h-4" />
             <span className="text-sm font-medium">New Chat</span>
-          </button>
+          </button> */}
           <button
             onClick={clearHistory}
             className="flex items-center space-x-1 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all shadow-sm"
           >
             <Trash2 className="w-4 h-4" />
-            <span className="text-sm font-medium">Clear</span>
+            <span className="text-sm font-medium cursor-pointer">Clear Chat</span>
           </button>
         </div>
       </div>
@@ -260,6 +273,38 @@ export default function ChatPage() {
           </div>
         </div>
       </div>
+
+      {/* Confirm Modal */}
+      {showConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-xl p-8 max-w-sm w-full text-center">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">Clear Chat History?</h2>
+            <p className="mb-6 text-gray-600">Are you sure you want to clear your entire chat history? This action cannot be undone.</p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowConfirm(false)}
+                className="px-6 py-2 cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-gray-700 font-medium hover:bg-gray-100 transition"
+                disabled={isDeleting}
+              >
+                No
+              </button>
+              <button
+                onClick={handleConfirmClear}
+                className="px-6 py-2 cursor-pointer rounded-lg bg-red-500 text-white font-bold hover:bg-red-600 transition flex items-center justify-center"
+                disabled={isDeleting}
+              >
+                {isDeleting ? (
+                  <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                ) : null}
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
