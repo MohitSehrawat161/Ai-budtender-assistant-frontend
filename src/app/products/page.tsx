@@ -136,7 +136,7 @@ export default function ProductExplorer() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA]">
+    <div className="min-h-screen bg-[#f4fbf0]">
       {/* Sticky Filter Bar */}
       <div
         className={`sticky top-18 z-10 transition-all duration-300 bg-white border-b border-black/10`}
