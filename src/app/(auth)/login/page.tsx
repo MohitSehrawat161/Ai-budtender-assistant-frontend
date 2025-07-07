@@ -61,18 +61,18 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-indigo-50 via-purple-50 to-white relative overflow-hidden">
       {/* Decorative cannabis leaf watermark */}
-      <Leaf className="absolute -left-20 -bottom-20 w-96 h-96 text-indigo-400/20" />
-      <Leaf className="absolute -right-20 -top-20 w-96 h-96 text-purple-200/80 transform rotate-45" />
+      <Leaf className="absolute -left-20 -bottom-20 w-96 h-96 text-green-400/20" />
+      <Leaf className="absolute -right-20 -top-20 w-96 h-96 text-green-200/80 transform rotate-45" />
       
       {/* Login Card */}
       <div className="w-full max-w-md relative z-10">
         <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20">
           {/* Logo and Heading */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/20 mb-4">
+            <div className="inline-flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg shadow-indigo-500/20 mb-4">
               <Leaf className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent mb-2">
               Welcome Back
             </h1>
             <p className="text-slate-600">Sign in to your AI Budtender account</p>
@@ -87,7 +87,7 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-indigo-400" />
+                  <Mail className="h-5 w-5 text-green-400" />
                 </div>
                 <input
                   id="email"
@@ -110,7 +110,7 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-indigo-400" />
+                  <Lock className="h-5 w-5 text-green-400" />
                 </div>
                 <input
                   id="password"
@@ -125,7 +125,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-indigo-600 transition-colors"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-green-600 transition-colors"
                 >
                   {showPassword ? (
                     <EyeOff className="h-5 w-5" />
@@ -160,7 +160,7 @@ export default function LoginPage() {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full py-3 px-4 cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="w-full py-3 px-4 cursor-pointer bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Log In
             </button>

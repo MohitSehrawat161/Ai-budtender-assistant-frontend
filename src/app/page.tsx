@@ -130,6 +130,21 @@ console.log(recommendations);
       <div className="min-h-screen" style={{ backgroundColor: '#f4fbf0' }}>
         {showConfetti && <Confetti />}
         <main className="container mx-auto px-4 py-12" style={{ color: '#232728' }}>
+          {/* Navigation Links - always visible */}
+          <div className="flex justify-center gap-6 mb-12 flex-wrap">
+            <Link href="/strains" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border" style={{ borderColor: '#eaf7e0' }}>
+              <Leaf style={{ color: '#82c341' }} className="group-hover:animate-pulse" size={24} />
+              <span className="font-semibold group-hover:text-[#82c341]" style={{ color: '#3F4540' }}>Browse Strains</span>
+            </Link>
+            <Link href="/products" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border" style={{ borderColor: '#eaf7e0' }}>
+              <ShoppingBag style={{ color: '#38861a' }} className="group-hover:animate-pulse" size={24} />
+              <span className="font-semibold group-hover:text-[#38861a]" style={{ color: '#3F4540' }}>Shop Products</span>
+            </Link>
+            <Link href="/chat" className="group flex items-center gap-3 px-6 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border" style={{ borderColor: '#eaf7e0' }}>
+              <MessageCircle style={{ color: '#3F4540' }} className="group-hover:animate-pulse" size={24} />
+              <span className="font-semibold group-hover:text-[#3F4540]" style={{ color: '#3F4540' }}>Chat with AI</span>
+            </Link>
+          </div>
           <div className="text-center mb-12 animate-fade-in">
             <div className="inline-flex items-center gap-2 mb-4">
               <Sparkles style={{ color: '#82c341' }} className="animate-pulse" size={32} />

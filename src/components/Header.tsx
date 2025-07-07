@@ -146,7 +146,7 @@ export default function Header() {
                     </Link>
                     <Link
                       href="/sign-up"
-                      className="flex items-center space-x-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2.5 rounded-xl font-medium text-sm shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/30 hover:scale-105 transition-all duration-300 ease-out"
+                      className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2.5 rounded-xl font-medium text-sm shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/30 hover:scale-105 transition-all duration-300 ease-out"
                     >
                       <UserPlus className="w-4 h-4" />
                       <span>Sign Up</span>
