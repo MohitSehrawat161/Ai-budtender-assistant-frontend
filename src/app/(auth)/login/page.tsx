@@ -33,7 +33,7 @@ export default function LoginPage() {
       ...prev,
       [name]: value
     }));
-    
+
     // Basic validation
     if (name === 'email' && value && !/\S+@\S+\.\S+/.test(value)) {
       setErrors(prev => ({ ...prev, email: 'Please enter a valid email' }));
@@ -42,7 +42,7 @@ export default function LoginPage() {
     }
   };
 
-  const handleSubmit = async(e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!errors.email && !errors.password && formData.email && formData.password) {
       try {
@@ -50,11 +50,9 @@ export default function LoginPage() {
         Cookies.set('token', result.token, { path: '/', sameSite: 'lax' });
         Cookies.set('user', JSON.stringify(result.data), { path: '/', sameSite: 'lax' });
         dispatch(loginAction(result.data));
-        try {
-          router.replace('/');
-        } catch (err) {
-          window.location.href = '/';
-        }
+
+        window.location.href = '/';
+
         console.log(result);
       } catch (err: any) {
         toast.error(err?.data?.message || 'Something went wrong. Please try again.');
@@ -67,7 +65,7 @@ export default function LoginPage() {
       {/* Decorative cannabis leaf watermark */}
       <Leaf className="absolute -left-20 -bottom-20 w-96 h-96 text-green-400/20" />
       <Leaf className="absolute -right-20 -top-20 w-96 h-96 text-green-200/80 transform rotate-45" />
-      
+
       {/* Login Card */}
       <div className="w-full max-w-md relative z-10">
         <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20">
