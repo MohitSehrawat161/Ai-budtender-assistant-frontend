@@ -12,12 +12,12 @@ export default function Settings() {
   const currentUsage = 12.45;
   const usagePercentage = (currentUsage / formData.costLimit) * 100;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("Settings saved!");
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
