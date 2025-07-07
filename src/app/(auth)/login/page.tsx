@@ -150,11 +150,11 @@ export default function LoginPage() {
                   Remember me
                 </label>
               </div>
-              <div className="text-sm">
+              {/* <div className="text-sm">
                 <Link href="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Forgot password?
                 </Link>
-              </div>
+              </div> */}
             </div>
 
             {/* Login Button */}
@@ -170,7 +170,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-slate-600">
               Don't have an account?{' '}
-              <Link href="/sign-up" className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+              <Link href="/sign-up" className="font-medium text-green-600 hover:text-green-500 transition-colors">
                 Sign up
               </Link>
             </p>
