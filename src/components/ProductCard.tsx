@@ -85,15 +85,24 @@ export type Product = {
   __v?: number;
 };
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product, imageUrl }: { product: Product; imageUrl?: string }) {
   const badgeStyle = getTypeBadgeStyle(product.type);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div
-          className="group relative bg-white rounded-xl p-6 border border-[#F0F0F0] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer flex flex-col"
+          className="group  relative bg-white rounded-xl p-6 border border-[#F0F0F0] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer flex flex-col"
         >
+          {/* Product Image */}
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={product.basicDescription}
+              className="w-full h-64 object-contain mb-4 rounded-xl bg-[#f4fbf0] border border-[#eaf7e0]"
+              onError={e => { (e.currentTarget as HTMLImageElement).src = '/product-images/fallback.jpg'; }}
+            />
+          )}
           {/* Type Badge */}
           <div
             className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4"
@@ -169,7 +178,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </button>
         </div>
       </DialogTrigger>
-      <DialogContent className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-white/20 p-0">
+      <DialogContent className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-white/20 p-0">
         <DialogHeader className="sticky top-0 bg-white/90 backdrop-blur-xl border-b border-[#c7d0c7]/30 p-6 rounded-t-3xl z-50">
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -192,6 +201,15 @@ export default function ProductCard({ product }: { product: Product }) {
               </button>
             </DialogClose>
           </div>
+          {/* Product Image in Modal */}
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={product.basicDescription}
+              className="w-full h-60 object-contain my- rounded-2xl bg-[#f4fbf0] border border-[#eaf7e0]"
+              onError={e => { (e.currentTarget as HTMLImageElement).src = '/product-images/fallback.jpg'; }}
+            />
+          )}
         </DialogHeader>
         <div className="p-6 space-y-6">
           {/* CBD/THC/Servings */}
@@ -199,19 +217,19 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.cbdMg > 0 && (
               <div className="bg-[#e3e7e3]/80 backdrop-blur-sm rounded-2xl p-4 border border-[#c7d0c7]/30">
                 <div className="text-sm font-medium text-[#5c735c] mb-1">CBD Content</div>
-                <div className="text-2xl font-bold text-[#323d32]">{product.cbdMg}mg</div>
+                <div className="text-lg font-bold text-[#323d32]">{product.cbdMg}mg</div>
               </div>
             )}
             {product.thc > 0 && (
               <div className="bg-[#cdd5cd]/80 backdrop-blur-sm rounded-2xl p-4 border border-[#a3b2a3]/30">
                 <div className="text-sm font-medium text-[#7a8f7a] mb-1">THC Content</div>
-                <div className="text-2xl font-bold text-[#323d32]">{product.thc}mg</div>
+                <div className="text-lg font-bold text-[#323d32]">{product.thc}mg</div>
               </div>
             )}
             {product.servings && (
               <div className="bg-[#f6f7f6]/80 backdrop-blur-sm rounded-2xl p-4 border border-[#e3e7e3]/30">
                 <div className="text-sm font-medium text-[#7a8f7a] mb-1">Servings</div>
-                <div className="text-2xl font-bold text-[#323d32]">{product.servings}</div>
+                <div className="text-lg font-bold text-[#323d32]">{product.servings}</div>
               </div>
             )}
           </div>

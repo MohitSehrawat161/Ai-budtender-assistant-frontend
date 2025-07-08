@@ -231,7 +231,7 @@ export default function ProductExplorer() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#222] mb-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#222] mb-4">
             Cannabis Product Explorer
           </h1>
           <p className="text-lg md:text-xl text-[#666] max-w-3xl mx-auto leading-relaxed">
@@ -269,9 +269,12 @@ export default function ProductExplorer() {
               </div>
             </div>
           ) : (
-            filteredProducts.map((product: Product, idx: number) => (
-              <ProductCard key={product._id || product.sku} product={product} />
-            ))
+            filteredProducts.map((product: Product, idx: number) => {
+              const imageUrl = `/product-images/${product.sku}.jpg`;
+              return (
+                <ProductCard key={product._id || product.sku} product={product} imageUrl={imageUrl} />
+              );
+            })
           )}
         </div>
       </main>
